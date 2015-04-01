@@ -1,0 +1,73 @@
+
+<div class="center-align stage red darken-1">
+  <div class="row no-padding red darken-1">
+    <h5 ng-class="theme_text_primary" class="headerBar col s12">Good evening,<b> Alex</b></h5>
+  </div>
+  <div ng-class="theme_text_primary" class="row notificationContainer z-depth-2 white accent-4"><b>No New Notifications</b></div>
+  <div class="row timeContainer z-depth-2 white accent-4">
+    <h1 ng-class="theme_text_primary" class="time col s12 l12"><span>{{time_time}}</span><span class="blue-text text-darken-2"> {{time_pm}}</span></h1><a ng-click="debug()" class="waves-effect waves-light btn">Debug</a>
+  </div>
+  <div class="row widgetStage red darken-1">
+    <div class="container widgetContainer col m6 s12 l4">
+      <div class="card medium z-depth-2 systemContainer">
+        <div class="card-content fullheight"><span ng-class="theme_text_primary" class="card-title"><i class="mdi-hardware-desktop-windows left"></i><b>System</b><i class="mdi-navigation-close right"></i></span>
+          <ul class="collection left-align">
+            <li class="collection-item avatar"><img src="icons/computer.svg" class="thumb"/><span class="title"><b>Info</b></span>
+              <p>{{sysinfo.hostname}} <br> {{sysinfo.type}} -  {{sysinfo.arch}}</p>
+            </li>
+            <li class="collection-item avatar"><img src="icons/processor.svg" class="thumb"/><span class="title"><b>Processor</b></span>
+              <p>{{sysinfo.cpus.length}}x {{sysinfo.cpus[0].model}}</p>
+            </li>
+            <li class="collection-item avatar"><img src="icons/ram.svg" class="thumb"/><span class="title"><b>Memory</b></span>
+              <p>{{sysinfo.percentmem}}% Usage <br> {{sysinfo.usedmem}} mb / {{sysinfo.totalmem}} mb</p>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="container widgetContainer col m6 s12 l4">
+      <div class="card medium z-depth-2 feedContainer">
+        <div class="card-content fullheight">
+          <div class="card-header"><span ng-class="theme_text_primary" class="card-title"><i class="mdi-maps-layers left"></i><b>RSS Reader</b><i class="mdi-navigation-close right"></i></span></div>
+          <div class="feeds">
+            <ul ng-if="feeds" data-collapsible="accordion" class="collapsible">
+              <li ng-repeat="feed in feeds" on-repeat-end="on-repeat-end">
+                <div class="collapsible-header valign-wrapper"><i class="mdi-image-filter-drama"></i>
+                  <h5 class="flow-title valign"><a title="{{feed.link}}" href="{{feed.link}}" class="red-text"><b>{{feed.title}}</b></a></h5>
+                </div>
+                <div class="collapsible-body left-align grey lighten-5">
+                  <p ng-bind-html="trustHtml(feed.content)" class="text"></p>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container widgetContainer col m6 s12 l4">
+      <div class="card medium z-depth-2 torrentsWidget">
+        <div class="card-content fullheight">
+          <div class="header"><span ng-class="theme_text_primary" class="card-title"><i class="mdi-file-folder left"></i><b>Torrents</b><i class="mdi-navigation-close right"></i></span></div>
+          <div class="torrents">
+            <ul data-collapsible="accordion" class="collapsible">
+              <li ng-repeat="tor in torrents.torrents" on-repeat-end="on-repeat-end">
+                <div class="collapsible-header valign-wrapper"><i class="mdi-image-filter-drama"></i>
+                  <h4 class="flow-title valign">{{tor.name}}</h4>
+                </div>
+                <div class="collapsible-body left-align grey lighten-5">
+                  <p class="text">test</p>
+                </div>
+              </li>
+            </ul>
+          </div>
+          <div class="footer z-depth-2 valign-wrapper">
+            <div class="container text valign no-padding">
+              <h6><b>Stats</b></h6><span>
+                <h6>[DL]: {{(torrents.stats.download_rate / 1024 / 1024).toFixed(2)}} MB/s     [UL]: {{(torrents.stats.upload_rate / 1024).toFixed(2)}} KB/s</h6></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

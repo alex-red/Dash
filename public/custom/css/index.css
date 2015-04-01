@@ -1,0 +1,116 @@
+@import url("http://fonts.googleapis.com/css?family=Ubuntu:500");
+.no-padding {
+  margin: 0;
+  padding: 0;
+}
+.stage {
+  height: 100%;
+}
+body {
+  background-color: #e3f2fd;
+}
+.dash {
+  background-color: #000;
+}
+.fullheight {
+  height: 100% !important;
+}
+.widgetContainer {
+  min-width: 304px;
+}
+.systemContainer {
+  font-size: 12px;
+}
+.systemContainer .collection .collection-item.avatar {
+  padding-left: 72px !important;
+  height: 65px !important;
+}
+.systemContainer .collection .collection-item {
+  padding: 0 !important;
+}
+.systemContainer .thumb {
+  position: absolute;
+  width: 40px;
+  left: 1em;
+  top: 1em;
+}
+.feedContainer {
+  height: 100%;
+}
+.feedContainer .feeds {
+  height: 100%;
+  overflow-y: scroll !important;
+  margin-left: -20;
+  margin-right: -20;
+}
+.feedContainer .feeds ul {
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  margin: 0 !important;
+  margin-bottom: 2rem;
+}
+.feedContainer .feeds p {
+  padding: 0.3rem !important;
+  padding-bottom: 2em !important;
+}
+.feedContainer .feeds p pre {
+  background-color: #fff3e0;
+  padding: 0.5rem;
+  box-shadow: 2px 2px 2px #888;
+}
+.feedContainer .feeds a:hover {
+  text-decoration: underline;
+}
+.feedContainer .card-header {
+  padding-bottom: 7.5px !important;
+}
+.feedContainer .flow-title {
+  font-size: 12px;
+  line-height: 1.2rem !important;
+}
+.feedContainer .collapsible-header {
+  height: 55px !important;
+}
+.feedContainer .text {
+  font-size: 12px !important;
+  line-height: 1.3rem !important;
+  padding: 0.1em !important;
+}
+.torrentsWidget {
+  height: 100%;
+}
+.torrentsWidget ul {
+  margin: 0 !important;
+}
+.torrentsWidget .header {
+  padding-bottom: 7.5px !important;
+}
+.torrentsWidget .torrents {
+  height: 280px;
+  overflow-y: scroll;
+  margin-left: -20;
+  margin-right: -20;
+  margin-bottom: 20px;
+}
+.torrentsWidget .torrents i {
+  margin-bottom: 1em;
+}
+.torrentsWidget .torrents .flow-title {
+  font-size: 12px;
+  line-height: 1.3rem !important;
+}
+.torrentsWidget .collapsible-header {
+  height: 35px !important;
+}
+.torrentsWidget .footer {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  background-color: #fff;
+  height: 50px;
+  width: 100%;
+}
+.torrentsWidget .footer .text {
+  margin: 0 auto;
+}

@@ -1,0 +1,12 @@
+{
+  "name": "Dash",
+  "main": "server.js",
+  "dependencies": {
+    "body-parser": "*",
+    "express": "*",
+    "method-override": "*",
+    "mongoose": "*",
+    "request": "^2.54.0",
+    "tough-cookie": "^0.12.1"
+  }
+}

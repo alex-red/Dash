@@ -1,0 +1,77 @@
+- var theme_primary = ['red', 'darken-1']
+- var theme_secondary = ['white', 'accent-4']
+
+.center-align.stage(class=theme_primary)
+  .row.no-padding(class=theme_primary)
+    h5.headerBar.col.s12(ng-class="theme_text_primary") Good evening,
+      b  Alex
+  .row.notificationContainer.z-depth-2(ng-class="theme_text_primary" class=theme_secondary)
+    b No New Notifications
+  .row.timeContainer.z-depth-2(class=theme_secondary)
+    h1.time.col.s12.l12(ng-class="theme_text_primary")
+      span {{time_time}}
+      span.blue-text.text-darken-2  {{time_pm}}
+    a.waves-effect.waves-light.btn(ng-click="debug()") Debug
+
+  .row.widgetStage(class=theme_primary)
+    .container.widgetContainer.col.m6.s12.l4
+      .card.medium.z-depth-2.systemContainer
+        .card-content.fullheight
+          span.card-title(ng-class="theme_text_primary")
+            i.mdi-hardware-desktop-windows.left
+            b System
+            i.mdi-navigation-close.right
+          ul.collection.left-align
+            li.collection-item.avatar
+              img(src="icons/computer.svg").thumb
+              span.title: b Info
+              p {{sysinfo.hostname}} <br> {{sysinfo.type}} -  {{sysinfo.arch}}
+            li.collection-item.avatar
+              img(src="icons/processor.svg").thumb
+              span.title: b Processor
+              p {{sysinfo.cpus.length}}x {{sysinfo.cpus[0].model}}
+            li.collection-item.avatar
+              img(src="icons/ram.svg").thumb
+              span.title: b Memory
+              p {{sysinfo.percentmem}}% Usage <br> {{sysinfo.usedmem}} mb / {{sysinfo.totalmem}} mb
+
+
+    .container.widgetContainer.col.m6.s12.l4
+      .card.medium.z-depth-2.feedContainer
+        .card-content.fullheight
+          .card-header
+            span.card-title(ng-class="theme_text_primary")
+              i.mdi-maps-layers.left
+              b RSS Reader
+              i.mdi-navigation-close.right
+          .feeds
+            ul.collapsible(ng-if="feeds" data-collapsible="accordion")
+              li(ng-repeat="feed in feeds" on-repeat-end)
+                .collapsible-header.valign-wrapper
+                    i.mdi-image-filter-drama
+                    h5.flow-title.valign
+                      a(title="{{feed.link}}" href="{{feed.link}}").red-text: b {{feed.title}}
+                .collapsible-body.left-align.grey.lighten-5
+                    p.text(ng-bind-html="trustHtml(feed.content)")
+
+    .container.widgetContainer.col.m6.s12.l4
+      .card.medium.z-depth-2.torrentsWidget
+        .card-content.fullheight
+          .header
+            span.card-title(ng-class="theme_text_primary")
+              i.mdi-file-folder.left
+              b Torrents
+              i.mdi-navigation-close.right
+          .torrents
+            ul.collapsible(data-collapsible="accordion")
+              li(ng-repeat="tor in torrents.torrents" on-repeat-end)
+                .collapsible-header.valign-wrapper
+                    i.mdi-image-filter-drama
+                    h4.flow-title.valign {{tor.name}}
+                .collapsible-body.left-align.grey.lighten-5
+                    p.text test
+          .footer.z-depth-2.valign-wrapper
+            .container.text.valign.no-padding
+              h6: b Stats
+              span
+                h6 [DL]: {{(torrents.stats.download_rate / 1024 / 1024).toFixed(2)}} MB/s     [UL]: {{(torrents.stats.upload_rate / 1024).toFixed(2)}} KB/s
