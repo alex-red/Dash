@@ -1,0 +1,21 @@
+{
+  "name": "Dash",
+  "version": "0.0.0",
+  "authors": [
+    "Alex L <alex.redcode@gmail.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "ngSanitize": "~0.0.2"
+  },
+  "resolutions": {
+    "angular": "1.3.15"
+  }
+}
