@@ -5,7 +5,7 @@ request = require 'request'
 module.exports = (app) ->
 
   app.get "/", (req, res) ->
-    res.sendFile path.join(__dirname, "../public/views/index.html")
+    return res.sendFile path.join(__dirname, "../public/views/index.html")
 
   app.get '/sys_info', (req, res) ->
     cpuInfo =
@@ -20,23 +20,21 @@ module.exports = (app) ->
       freemem : os.freemem()
       cpus : os.cpus()
       network : os.networkInterfaces()
-    res.send cpuInfo
+    return res.send cpuInfo
 
-  app.get '/deluge_info', (req, res) ->
-    toReturn = 'Response: '
+  app.use '/deluge_info', (req, res, next) ->
+    toReturn = ''
     verbose = false
+    ctr = 0
 
-    request = request.defaults {
+    options =
       method: 'POST'
       url: 'http://redserver:8112/json'
       headers:
-        'Content-Type': 'application/json'
         'Accept': 'application/json'
       json: true
       jar: true
       gzip: true
-    }
-    options =
       body:
         id: 1
         method: 'auth.login'
@@ -49,13 +47,14 @@ module.exports = (app) ->
       if verbose
         console.log 'Authentication: '
         console.log data.toString()
+    .on 'end', ->
       grabInformation()
 
     grabInformation = ->
       options.body =
         id: 1
         method: 'web.update_ui'
-        params: [ [], {} ]
+        params: [[],{}]
 
       request options, (error, response, body) -> # Check if connected
         if error
@@ -64,25 +63,28 @@ module.exports = (app) ->
         if verbose
           console.log 'Torrent Info:'
           console.log data.toString()
-        toReturn = data.toString()
-        res.send toReturn #End
-        return
+          console.log 'Iteration ' + ctr
+          ctr += 1
+        toReturn += data.toString()
+      .on 'end', ->
+        res.send toReturn
+        next()
+        res.end()
 
-    checkConnection = ->
-      options.body =
-        id: 1
-        method: 'web.connected'
-        params: []
 
-      request options, (error, response, body) -> # Check if connected
-        if error
-          return console.log 'Failed to connect - ' + error
-      .on 'data', (data) ->
-        if verbose
-          console.log 'Connected status?'
-          console.log data.toString()
+    # checkConnection = ->
+    #   options.body =
+    #     id: 1
+    #     method: 'web.connected'
+    #     params: []
 
-    return
+    #   request options, (error, response, body) -> # Check if connected
+    #     if error
+    #       return console.log 'Failed to connect - ' + error
+    #   .on 'data', (data) ->
+    #     if verbose
+    #       console.log 'Connected status?'
+    #       console.log data.toString()
 
 
 

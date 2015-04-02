@@ -50,13 +50,26 @@ homeCtrl = ($scope, $interval, $http, $sce) ->
                 $interval.cancel countSystemInfo
                 console.log "Error! #{err}"
 
+    ## Torrents
     getDelugeInfo = ->
         $http.get 'deluge_info'
             .success (data) ->
+                # console.log data
                 $scope.torrents = data.result
-                console.log $scope.torrents
+                # console.log $scope.torrents
             .error (err) ->
                 console.log "Error: #{err}"
+
+    toMB = (b) ->
+        res = (b / 1000 / 1000).toFixed(2).toString() + ' MB/s'
+        return res
+    toKB = (b) ->
+        return (b / 1000).toFixed(2)
+    $scope.parseDLSpeed = (b) ->
+        res = toKB(b)
+        res = if res > 1000 then toMB(b) else res.toString() + ' KB/s'
+
+        return res
 
     countTime = $interval(updateTime, 1000)
     countSystemInfo = $interval getSystemInfo, 2000
@@ -85,7 +98,6 @@ homeCtrl = ($scope, $interval, $http, $sce) ->
         updateTime()
         getSystemInfo()
         $scope.grabFeeds()
-
         getDelugeInfo()
     init()
 

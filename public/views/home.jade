@@ -34,6 +34,10 @@
               img(src="icons/ram.svg").thumb
               span.title: b Memory
               p {{sysinfo.percentmem}}% Usage <br> {{sysinfo.usedmem}} mb / {{sysinfo.totalmem}} mb
+            li.collection-item.avatar
+              img(src="icons/processor.svg").thumb
+              span.title: b Processor
+              p {{sysinfo.cpus.length}}x {{sysinfo.cpus[0].model}}
 
 
     .container.widgetContainer.col.m6.s12.l4
@@ -65,13 +69,15 @@
           .torrents
             ul.collapsible(data-collapsible="accordion")
               li(ng-repeat="tor in torrents.torrents" on-repeat-end)
-                .collapsible-header.valign-wrapper
-                    i.mdi-image-filter-drama
-                    h4.flow-title.valign {{tor.name}}
+                .collapsible-header.disable-text-highlighting.valign-wrapper
+                  i.mdi-image-filter-drama
+                  span.flow-title.valign(title="{{tor.name}}"): b {{tor.name}}
+                .progress.no-padding(title="{{tor.progress.toFixed(2)}}")
+                  .determinate(style="width: {{tor.progress}}%;")
                 .collapsible-body.left-align.grey.lighten-5
-                    p.text test
+                  p.text test
           .footer.z-depth-2.valign-wrapper
             .container.text.valign.no-padding
               h6: b Stats
               span
-                h6 [DL]: {{(torrents.stats.download_rate / 1024 / 1024).toFixed(2)}} MB/s     [UL]: {{(torrents.stats.upload_rate / 1024).toFixed(2)}} KB/s
+                h6 [DL]: {{parseDLSpeed(torrents.stats.download_rate)}}  [UL]: {{parseDLSpeed(torrents.stats.upload_rate)}}

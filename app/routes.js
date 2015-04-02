@@ -28,22 +28,20 @@
       };
       return res.send(cpuInfo);
     });
-    return app.get('/deluge_info', function(req, res) {
-      var checkConnection, grabInformation, options, toReturn, verbose;
-      toReturn = 'Response: ';
+    return app.use('/deluge_info', function(req, res, next) {
+      var ctr, grabInformation, options, toReturn, verbose;
+      toReturn = '';
       verbose = false;
-      request = request.defaults({
+      ctr = 0;
+      options = {
         method: 'POST',
         url: 'http://redserver:8112/json',
         headers: {
-          'Content-Type': 'application/json',
           'Accept': 'application/json'
         },
         json: true,
         jar: true,
-        gzip: true
-      });
-      options = {
+        gzip: true,
         body: {
           id: 1,
           method: 'auth.login',
@@ -57,11 +55,12 @@
       }).on('data', function(data) {
         if (verbose) {
           console.log('Authentication: ');
-          console.log(data.toString());
+          return console.log(data.toString());
         }
+      }).on('end', function() {
         return grabInformation();
       });
-      grabInformation = function() {
+      return grabInformation = function() {
         options.body = {
           id: 1,
           method: 'web.update_ui',
@@ -75,26 +74,14 @@
           if (verbose) {
             console.log('Torrent Info:');
             console.log(data.toString());
+            console.log('Iteration ' + ctr);
+            ctr += 1;
           }
-          toReturn = data.toString();
+          return toReturn += data.toString();
+        }).on('end', function() {
           res.send(toReturn);
-        });
-      };
-      checkConnection = function() {
-        options.body = {
-          id: 1,
-          method: 'web.connected',
-          params: []
-        };
-        return request(options, function(error, response, body) {
-          if (error) {
-            return console.log('Failed to connect - ' + error);
-          }
-        }).on('data', function(data) {
-          if (verbose) {
-            console.log('Connected status?');
-            return console.log(data.toString());
-          }
+          next();
+          return res.end();
         });
       };
     });

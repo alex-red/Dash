@@ -1,11 +1,28 @@
+//Fonts
 @import url(http://fonts.googleapis.com/css?family=Ubuntu:500);
 
+// Helpers
 boxshadow()
     box-shadow: 2px 2px 2px #888888;
 
 .no-padding
     margin 0
     padding 0
+
+.disable-text-highlighting
+    -webkit-user-select: none; /* Webkit */
+    -moz-user-select: none;    /* Firefox */
+    -ms-user-select: none;     /* IE 10  */
+    -o-user-select: none;
+    user-select: none;
+
+.noselect
+    -webkit-touch-callout none
+    -webkit-user-select none
+    -khtml-user-select none
+    -moz-user-select none
+    -ms-user-select none
+    user-select none
 
 .stage
     height 100%
@@ -28,9 +45,9 @@ body
     font-size 12px
     .collection .collection-item.avatar
         padding-left 72px !important
-        height 65px !important
+        height 75px !important
     .collection .collection-item
-        padding 0 !important
+        padding 10 !important
     .thumb
         position absolute
         width 40px
@@ -58,16 +75,17 @@ body
                 background-color #FFF3E0
                 padding 0.5rem
                 boxshadow()
-
+        a
+            text-transform capitalize
         a:hover
             text-decoration underline
-    .card-header
-        padding-bottom 7.5px !important
     .flow-title
         font-size 12px
         line-height 1.2rem !important
     .collapsible-header
         height: 55px !important
+        overflow hidden !important
+
     .text
         font-size 12px !important
         line-height 1.3rem !important
@@ -81,17 +99,25 @@ body
         padding-bottom 7.5px !important
     .torrents
         height 280px
-        overflow-y scroll
+        overflow-y scroll !important
         margin-left -20
         margin-right -20
         margin-bottom 20px
         i
-            margin-bottom 1em
+            margin-top -.6rem
+        overflow hidden !important
         .flow-title
+            padding .2rem
             font-size 12px
-            line-height 1.3rem !important
+            height 100%
     .collapsible-header
         height: 35px !important
+        line-height 1rem !important
+        overflow hidden !important
+        .progress
+            width 312px
+            margin-left: -14.5;
+            margin-right: -14.5;
     .footer
         position absolute
         left 0

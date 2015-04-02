@@ -31,7 +31,7 @@
   });
 
   homeCtrl = function($scope, $interval, $http, $sce) {
-    var countDelugeInfo, countSystemInfo, countTime, getDelugeInfo, getSystemInfo, grabFeed, init, time, timeFormat, updateTime;
+    var countDelugeInfo, countSystemInfo, countTime, getDelugeInfo, getSystemInfo, grabFeed, init, time, timeFormat, toKB, toMB, updateTime;
     timeFormat = 'h:mm:ss A';
     time = 0;
     $scope.theme_text_primary = "grey-text text-darken-4";
@@ -56,11 +56,24 @@
     };
     getDelugeInfo = function() {
       return $http.get('deluge_info').success(function(data) {
-        $scope.torrents = data.result;
-        return console.log($scope.torrents);
+        return $scope.torrents = data.result;
       }).error(function(err) {
         return console.log("Error: " + err);
       });
+    };
+    toMB = function(b) {
+      var res;
+      res = (b / 1000 / 1000).toFixed(2).toString() + ' MB/s';
+      return res;
+    };
+    toKB = function(b) {
+      return (b / 1000).toFixed(2);
+    };
+    $scope.parseDLSpeed = function(b) {
+      var res;
+      res = toKB(b);
+      res = res > 1000 ? toMB(b) : res.toString() + ' KB/s';
+      return res;
     };
     countTime = $interval(updateTime, 1000);
     countSystemInfo = $interval(getSystemInfo, 2000);

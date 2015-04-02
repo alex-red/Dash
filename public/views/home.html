@@ -21,6 +21,9 @@
             <li class="collection-item avatar"><img src="icons/ram.svg" class="thumb"/><span class="title"><b>Memory</b></span>
               <p>{{sysinfo.percentmem}}% Usage <br> {{sysinfo.usedmem}} mb / {{sysinfo.totalmem}} mb</p>
             </li>
+            <li class="collection-item avatar"><img src="icons/processor.svg" class="thumb"/><span class="title"><b>Processor</b></span>
+              <p>{{sysinfo.cpus.length}}x {{sysinfo.cpus[0].model}}</p>
+            </li>
           </ul>
         </div>
       </div>
@@ -51,8 +54,9 @@
           <div class="torrents">
             <ul data-collapsible="accordion" class="collapsible">
               <li ng-repeat="tor in torrents.torrents" on-repeat-end="on-repeat-end">
-                <div class="collapsible-header valign-wrapper"><i class="mdi-image-filter-drama"></i>
-                  <h4 class="flow-title valign">{{tor.name}}</h4>
+                <div class="collapsible-header disable-text-highlighting valign-wrapper"><i class="mdi-image-filter-drama"></i><span title="{{tor.name}}" class="flow-title valign"><b>{{tor.name}}</b></span></div>
+                <div title="{{tor.progress.toFixed(2)}}" class="progress no-padding">
+                  <div style="width: {{tor.progress}}%;" class="determinate"></div>
                 </div>
                 <div class="collapsible-body left-align grey lighten-5">
                   <p class="text">test</p>
@@ -63,7 +67,7 @@
           <div class="footer z-depth-2 valign-wrapper">
             <div class="container text valign no-padding">
               <h6><b>Stats</b></h6><span>
-                <h6>[DL]: {{(torrents.stats.download_rate / 1024 / 1024).toFixed(2)}} MB/s     [UL]: {{(torrents.stats.upload_rate / 1024).toFixed(2)}} KB/s</h6></span>
+                <h6>[DL]: {{parseDLSpeed(torrents.stats.download_rate)}}  [UL]: {{parseDLSpeed(torrents.stats.upload_rate)}}</h6></span>
             </div>
           </div>
         </div>
