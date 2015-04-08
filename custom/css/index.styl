@@ -1,0 +1,192 @@
+//Fonts
+@import url(http://fonts.googleapis.com/css?family=Ubuntu:500);
+
+// Helpers
+boxshadow()
+    box-shadow: 2px 2px 2px #888888;
+
+.no-padding
+    margin 0
+    padding 0
+
+.disable-text-highlighting
+    -webkit-user-select: none; /* Webkit */
+    -moz-user-select: none;    /* Firefox */
+    -ms-user-select: none;     /* IE 10  */
+    -o-user-select: none;
+    user-select: none;
+
+.noselect
+    -webkit-touch-callout none
+    -webkit-user-select none
+    -khtml-user-select none
+    -moz-user-select none
+    -ms-user-select none
+    user-select none
+
+noselect()
+    -webkit-touch-callout none
+    -webkit-user-select none
+    -khtml-user-select none
+    -moz-user-select none
+    -ms-user-select none
+    user-select none
+
+.stage
+    height 100%
+
+
+
+body
+    background-color #e3f2fd
+// Dash
+.dash
+    background-color black
+
+.fullheight
+    height 100% !important
+.widgetContainer
+    min-width 304px
+    .card-title
+        font-weight bold
+        noselect()
+
+
+.systemContainer
+    font-size 12px
+    li
+        padding 0 !important
+    .collection .collection-item.avatar
+        padding-left 72px !important
+        height 75px !important
+    .collection .collection-item
+        padding-top 0.25rem !important
+    .thumb
+        position absolute
+        width 40px
+        left 1em
+        top 1em
+
+.feedContainer
+    height 100%
+    .feeds
+        height 100%
+        margin-left -20
+        margin-right -20
+        margin-top 7.5
+        padding-bottom 3rem !important
+        overflow-y scroll !important
+        ul
+            -webkit-box-shadow: none;
+            -moz-box-shadow: none;
+            box-shadow: none;
+            margin: 0 !important
+            margin-bottom: 2rem;
+
+        p
+            padding 0.3rem !important
+            padding-bottom 2em !important
+
+            pre
+                background-color #FFF3E0
+                padding 0.5rem
+                boxshadow()
+        a
+            text-transform capitalize
+        a:hover
+            text-decoration underline
+
+    // .flow-title
+    //     font-size 0.8rem
+    //     line-height 1.0rem !important
+    //     text-align center
+    .collapsible-header
+        overflow hidden !important
+        height inherit !important
+        line-height normal !important
+        font-size .9rem
+
+
+    .text
+        font-size 12px !important
+        line-height 1.3rem !important
+        padding 0.1em !important
+    .card-reveal
+        overflow hidden !important
+    .optionContainer
+        background-color none
+        padding 0.2rem !important
+        margin-top 1.3rem
+        margin-left -20
+        margin-right -20
+        overflow hidden
+        li
+            overflow hidden
+            height 35px !important
+            padding 0.4rem !important
+            a
+                text-transform none
+        .feedTitle
+            font-size .8rem
+
+
+
+
+.torrentsWidget
+    height 100%
+    ul
+        margin 0 !important
+    .header
+        padding-bottom 7.5px !important
+    .torrents
+        height 280px
+        overflow-y scroll !important
+        margin-left -20
+        margin-right -20
+        margin-bottom 20px
+        .flow-title
+            padding .2rem
+            font-size 12px
+            height 100%
+        table
+            font-size 1em
+            thead
+                display none !important
+            tbody
+                font-size .8rem
+            td
+                padding 0.3rem !important
+                padding-left 1rem !important
+    .collapsible-header
+        // height: 35px !important
+        // line-height 1rem !important
+        overflow hidden !important
+        font-size .8rem
+        i
+            position absolute
+        span
+            padding-left 3rem
+        .progress
+            width 312px
+            margin-left: -14.5;
+            margin-right: -14.5;
+    .footer
+        position absolute
+        left 0
+        bottom 0
+        background-color #FFFFFF
+        height 50px
+        width 100%
+        .text
+            margin 0 auto
+        a // + btn
+            position absolute
+            left .5rem
+            top -1.5rem
+
+#addTorrents
+    #inputTorrent
+        width 80%
+        margin-left 4.5rem !important
+    label
+        margin-left 7.5rem !important

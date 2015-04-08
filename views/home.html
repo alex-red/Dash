@@ -1,0 +1,131 @@
+
+<div class="center-align stage red darken-1">
+  <div class="row no-padding red darken-1">
+    <h5 ng-class="theme_text_primary" class="headerBar col s12">Good evening,<b> Alex</b></h5>
+  </div>
+  <div ng-class="theme_text_primary" class="row notificationContainer z-depth-2 white accent-4"><b>No New Notifications</b></div>
+  <div class="row timeContainer z-depth-2 white accent-4">
+    <h1 ng-class="theme_text_primary" class="time col s12 l12"><span>{{time_time}}</span><span class="blue-text text-darken-2"> {{time_pm}}</span></h1>
+  </div>
+  <div class="row widgetStage red darken-1">
+    <div class="container widgetContainer col m6 s12 l4">
+      <div class="card medium z-depth-2 systemContainer">
+        <div class="card-content fullheight"><span ng-class="theme_text_primary" class="card-title">System<i class="mdi-hardware-desktop-windows left"></i><i class="mdi-navigation-close right"></i></span>
+          <ul class="collection left-align">
+            <li class="collection-item avatar"><img src="icons/computer.svg" class="thumb"/><span class="title"><b>Info</b></span>
+              <p>{{sysinfo.hostname}} <br> {{sysinfo.type}} -  {{sysinfo.arch}}</p>
+            </li>
+            <li class="collection-item avatar"><img src="icons/processor.svg" class="thumb"/><span class="title"><b>Processor</b></span>
+              <p>{{sysinfo.cpus.length}}x {{sysinfo.cpus[0].model}}</p>
+            </li>
+            <li class="collection-item avatar"><img src="icons/ram.svg" class="thumb"/><span class="title"><b>Memory</b></span>
+              <p>{{sysinfo.percentmem}}% Usage <br> {{sysinfo.usedmem}} MB / {{sysinfo.totalmem}} MB</p>
+            </li>
+            <li class="collection-item avatar"><img src="icons/hdd.svg" class="thumb"/><span class="title"><b>Storage [C:\]</b></span>
+              <p>{{diskInfo.used}}/{{diskInfo.total}} GB <br> {{diskInfo.free}} GB Remaining.</p>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="container widgetContainer col m6 s12 l4">
+      <div class="card medium z-depth-2 feedContainer">
+        <div class="card-content fullheight">
+          <div class="card-header"><span ng-class="theme_text_primary" class="card-title activator">RSS Reader<i class="mdi-maps-layers left"></i><i class="mdi-navigation-more-vert right"></i></span></div>
+          <div class="feeds">
+            <ul ng-if="feeds" data-collapsible="accordion" class="collapsible">
+              <li ng-repeat="feed in feeds" on-repeat-end="on-repeat-end">
+                <div class="collapsible-header">
+                  <div class="row no-padding">
+                    <h5 class="left">{{feed.link | returnDomainChar}}</h5><a title="{{feed.link}}" href="{{feed.link}}" class="red-text"><b>{{feed.title}}</b></a>
+                  </div>
+                </div>
+                <div class="collapsible-body left-align grey lighten-5">
+                  <p ng-bind-html="trustHtml(feed.content)" class="text"></p>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="card-reveal"><span ng-class="theme_text_primary" class="card-title">Options<i class="mdi-action-settings left"></i><i class="mdi-navigation-close right"></i></span>
+          <ul class="collection with-header optionContainer red">
+            <li class="collection-header red"><b>Current Feeds</b></li>
+            <li ng-repeat="f in feedsDB" class="collection-item">
+              <div class="feedObject row">
+                <div class="feedTitle col s10"><a href="{{f}}" title="{{f}}"><em>{{f}}</em></a></div>
+                <div class="feedHandler col s2"><a href="#!"><span class="badge red white-text">Del<i class="mdi-action-delete"></i></span></a></div>
+              </div>
+            </li>
+          </ul>
+          <div class="row">
+            <div class="input-field col s10">
+              <input id="inputFeed" type="text"/>
+              <label for="inputFeed">RSS Feed</label>
+            </div>
+            <div style="margin-top: 1.5rem; right: .5rem" class="inputHandler col s2"><a style="right: 0.5rem;" class="btn-floating btn-small waves-effect waves-light red"><i class="mdi-content-add"></i></a></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container widgetContainer col m6 s12 l4">
+      <div class="card medium z-depth-2 torrentsWidget">
+        <div class="card-content fullheight">
+          <div class="header"><span ng-class="theme_text_primary" class="card-title">Torrents<i class="mdi-file-folder left"></i><i class="mdi-navigation-close right"></i></span></div>
+          <div class="torrents">
+            <ul data-collapsible="accordion" class="collapsible">
+              <li ng-repeat="tor in torrents.torrents track by tor.name" on-repeat-end="on-repeat-end">
+                <div class="collapsible-header disable-text-highlighting"><i class="mdi-image-filter-drama"></i><span title="{{tor.name}}"><b>{{tor.name}}</b></span></div>
+                <div title="{{tor.progress.toFixed(2)}}" class="progress no-padding">
+                  <div style="width: {{tor.progress}}%;" class="determinate"></div>
+                </div>
+                <div class="collapsible-body left-align grey lighten-5">
+                  <table class="striped">
+                    <thead>
+                      <tr>
+                        <th></th>
+                        <th></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr>
+                        <td>Status: {{tor.state}}</td>
+                        <td>Speed: {{parseDLSpeed(tor.download_payload_rate)}}</td>
+                      </tr>
+                      <tr>
+                        <td>Active: {{parseTime(tor.active_time)}} Seconds</td>
+                        <td>Seeds: {{tor.num_seeds}}</td>
+                      </tr>
+                      <tr>
+                        <td>ETA: {{parseTime(tor.eta)}} remaining</td>
+                        <td>Peers: {{tor.num_peers}}</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </li>
+            </ul>
+            <p ng-if="checkEmpty(torrents.torrents)">You dont have any torrents.</p>
+          </div>
+          <div id="addTorrents" class="modal">
+            <div class="modal-content">
+              <h5>Add Torrent</h5>
+              <div class="row">
+                <div class="input-field col s12"><i class="prefix"><img width="50" src="icons/magnet.png"/></i>
+                  <input id="inputTorrent" type="text"/>
+                  <label for="inputTorrent">Magnet URL</label>
+                </div>
+              </div>
+            </div>
+            <div class="modal-footer"><a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Quit</a><a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Add</a></div>
+          </div>
+          <div class="footer z-depth-2 valign-wrapper"><a href="" ng-click="openModal('#addTorrents')" class="btn-floating btn-small waves-effect waves-light modal-trigger red"><i class="mdi-content-add"></i></a>
+            <div class="container text valign no-padding">
+              <h6><b>Stats</b></h6><span>
+                <h6>[DL]: {{parseDLSpeed(torrents.stats.download_rate)}}  [UL]: {{parseDLSpeed(torrents.stats.upload_rate)}}</h6></span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

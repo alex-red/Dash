@@ -1,0 +1,201 @@
+@import url("http://fonts.googleapis.com/css?family=Ubuntu:500");
+.no-padding {
+  margin: 0;
+  padding: 0;
+}
+.disable-text-highlighting {
+  -webkit-user-select: none; /* Webkit */
+  -moz-user-select: none; /* Firefox */
+  -ms-user-select: none; /* IE 10  */
+  -o-user-select: none;
+  user-select: none;
+}
+.noselect {
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+.stage {
+  height: 100%;
+}
+body {
+  background-color: #e3f2fd;
+}
+.dash {
+  background-color: #000;
+}
+.fullheight {
+  height: 100% !important;
+}
+.widgetContainer {
+  min-width: 304px;
+}
+.widgetContainer .card-title {
+  font-weight: bold;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+.systemContainer {
+  font-size: 12px;
+}
+.systemContainer li {
+  padding: 0 !important;
+}
+.systemContainer .collection .collection-item.avatar {
+  padding-left: 72px !important;
+  height: 75px !important;
+}
+.systemContainer .collection .collection-item {
+  padding-top: 0.25rem !important;
+}
+.systemContainer .thumb {
+  position: absolute;
+  width: 40px;
+  left: 1em;
+  top: 1em;
+}
+.feedContainer {
+  height: 100%;
+}
+.feedContainer .feeds {
+  height: 100%;
+  margin-left: -20;
+  margin-right: -20;
+  margin-top: 7.5;
+  padding-bottom: 3rem !important;
+  overflow-y: scroll !important;
+}
+.feedContainer .feeds ul {
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  margin: 0 !important;
+  margin-bottom: 2rem;
+}
+.feedContainer .feeds p {
+  padding: 0.3rem !important;
+  padding-bottom: 2em !important;
+}
+.feedContainer .feeds p pre {
+  background-color: #fff3e0;
+  padding: 0.5rem;
+  box-shadow: 2px 2px 2px #888;
+}
+.feedContainer .feeds a {
+  text-transform: capitalize;
+}
+.feedContainer .feeds a:hover {
+  text-decoration: underline;
+}
+.feedContainer .collapsible-header {
+  overflow: hidden !important;
+  height: inherit !important;
+  line-height: normal !important;
+  font-size: 0.9rem;
+}
+.feedContainer .text {
+  font-size: 12px !important;
+  line-height: 1.3rem !important;
+  padding: 0.1em !important;
+}
+.feedContainer .card-reveal {
+  overflow: hidden !important;
+}
+.feedContainer .optionContainer {
+  background-color: none;
+  padding: 0.2rem !important;
+  margin-top: 1.3rem;
+  margin-left: -20;
+  margin-right: -20;
+  overflow: hidden;
+}
+.feedContainer .optionContainer li {
+  overflow: hidden;
+  height: 35px !important;
+  padding: 0.4rem !important;
+}
+.feedContainer .optionContainer li a {
+  text-transform: none;
+}
+.feedContainer .optionContainer .feedTitle {
+  font-size: 0.8rem;
+}
+.torrentsWidget {
+  height: 100%;
+}
+.torrentsWidget ul {
+  margin: 0 !important;
+}
+.torrentsWidget .header {
+  padding-bottom: 7.5px !important;
+}
+.torrentsWidget .torrents {
+  height: 280px;
+  overflow-y: scroll !important;
+  margin-left: -20;
+  margin-right: -20;
+  margin-bottom: 20px;
+}
+.torrentsWidget .torrents .flow-title {
+  padding: 0.2rem;
+  font-size: 12px;
+  height: 100%;
+}
+.torrentsWidget .torrents table {
+  font-size: 1em;
+}
+.torrentsWidget .torrents table thead {
+  display: none !important;
+}
+.torrentsWidget .torrents table tbody {
+  font-size: 0.8rem;
+}
+.torrentsWidget .torrents table td {
+  padding: 0.3rem !important;
+  padding-left: 1rem !important;
+}
+.torrentsWidget .collapsible-header {
+  overflow: hidden !important;
+  font-size: 0.8rem;
+}
+.torrentsWidget .collapsible-header i {
+  position: absolute;
+}
+.torrentsWidget .collapsible-header span {
+  padding-left: 3rem;
+}
+.torrentsWidget .collapsible-header .progress {
+  width: 312px;
+  margin-left: -14.5;
+  margin-right: -14.5;
+}
+.torrentsWidget .footer {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  background-color: #fff;
+  height: 50px;
+  width: 100%;
+}
+.torrentsWidget .footer .text {
+  margin: 0 auto;
+}
+.torrentsWidget .footer a {
+  position: absolute;
+  left: 0.5rem;
+  top: -1.5rem;
+}
+#addTorrents #inputTorrent {
+  width: 80%;
+  margin-left: 4.5rem !important;
+}
+#addTorrents label {
+  margin-left: 7.5rem !important;
+}
