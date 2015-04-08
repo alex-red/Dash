@@ -33,12 +33,13 @@ app.directive 'onRepeatEnd', ->
 
 homeCtrl = ($scope, $interval, $http, $sce) ->
     # Vars
+    demoMode = true
     timeFormat = 'h:mm:ss A'
     time = 0
     $scope.theme_text_primary = "grey-text text-darken-4"
     # list of lists of feed objs
     $scope.feeds = []
-    $scope.feedsDB = ['http://stackoverflow.com/feeds/tag?tagnames=angularjs&sort=newest', 'http://www.reddit.com/r/treeofsavior.rss']
+    $scope.feedsDB = ['http://stackoverflow.com/feeds/tag?tagnames=angularjs&sort=newest', 'https://news.ycombinator.com/rss']
     $scope.torrents = null
 
     updateTime = ->
@@ -47,6 +48,19 @@ homeCtrl = ($scope, $interval, $http, $sce) ->
         $scope.time_pm = time.split(' ')[1]
 
     getSystemInfo = ->
+        if demoMode
+            data = {}
+            data.totalmem = 32768
+            data.freemem = data.totalmem - _.random(5000,8000)
+            data.usedmem = (data.totalmem - data.freemem).toFixed(2)
+            data.percentmem = ((data.usedmem / data.totalmem) * 100).toFixed(2)
+            data.hostname = "Github Server"
+            data.type = "Windows_NT"
+            data.platform = "win32"
+            data.arch = "x64"
+            data.cpus = [{'model': "Intel(R) Xeon(R) CPU E3-1231 v3 @ 3.40GHz"},1,2,3,4,5,6,7]
+            return $scope.sysinfo = data
+
         $http.get 'sys_info'
             .success (data) ->
                 data.totalmem = (data.totalmem / (1024 * 1024)).toFixed(2)
@@ -59,6 +73,13 @@ homeCtrl = ($scope, $interval, $http, $sce) ->
                 console.log "Error! #{err}"
 
     getSystemDiskInfo = ->
+        if demoMode
+            data = {}
+            data.total = 237.69
+            data.free = 152.06
+            data.used = 85.63
+            return $scope.diskInfo = data
+
         $http.get 'disk_info'
             .success (data) ->
                 data.total = (data.total / (1024 * 1024 * 1024)).toFixed(2)
@@ -70,6 +91,39 @@ homeCtrl = ($scope, $interval, $http, $sce) ->
 
     ## Torrents
     getDelugeInfo = ->
+        if demoMode
+            tmp1 = _.random 1230000000, 153000000
+            tmp2 = _.random 530000000, 153000000
+            tmp3 = _.random 30000000, 53000000
+            tmp4 = _.random 30000000, 53000000
+            data = {}
+            data.torrents = [
+                {name: 'Ubuntu-15.04-beta2-desktop-amd64.iso'
+                state: 'Downloading'
+                download_payload_rate: tmp1
+                active_time: 4323 + _.random(1230)
+                num_seeds: 69 + _.random(50)
+                eta: 3243  + _.random(1230)
+                num_peers: 543 + _.random(50)
+                progress: _.random(20,30)
+                },
+                {name: 'Ubuntu-21.5-desktop-amd128.iso'
+                state: 'Downloading'
+                download_payload_rate: tmp2
+                active_time: 4323  + _.random(1230)
+                num_seeds: 69 + _.random(50)
+                eta: 3243 + _.random(1230)
+                num_peers: 543 + _.random(50)
+                progress: _.random(70,90)
+                }
+            ]
+            data.stats =
+                'download_rate': tmp1 + tmp2
+                'upload_rate': tmp4 + tmp3
+
+            return $scope.torrents = data
+
+
         $http.get 'deluge_info'
             .success (data) ->
                 $scope.torrents = data.result
@@ -99,7 +153,7 @@ homeCtrl = ($scope, $interval, $http, $sce) ->
 
     grabFeed = (URL) ->
         feed = new google.feeds.Feed URL
-        feed.setNumEntries(5)
+        feed.setNumEntries(10)
         feed.setResultFormat google.feeds.Feed.JSON_FORMAT
         feed.load (res) ->
             if !res.error

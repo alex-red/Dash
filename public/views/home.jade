@@ -13,7 +13,7 @@
       span.blue-text.text-darken-2  {{time_pm}}
 
   .row.widgetStage(class=theme_primary)
-    .container.widgetContainer.col.m6.s12.l3
+    .container.widgetContainer.col.m6.s12.l4
       .card.medium.z-depth-2.systemContainer
         .card-content.fullheight
           span.card-title(ng-class="theme_text_primary") System
@@ -39,7 +39,7 @@
 
 
 
-    .container.widgetContainer.col.m6.s12.l3
+    .container.widgetContainer.col.m6.s12.l4
       .card.medium.z-depth-2.feedContainer
         .card-content.fullheight
           .card-header
@@ -76,7 +76,7 @@
               a.btn-floating.btn-small.waves-effect.waves-light.red(style="right: 0.5rem;")
                 i.mdi-content-add
 
-    .container.widgetContainer.col.m6.s12.l3
+    .container.widgetContainer.col.m6.s12.l4
       .card.medium.z-depth-2.torrentsWidget
         .card-content.fullheight
           .header
@@ -85,7 +85,7 @@
               i.mdi-navigation-close.right
           .torrents
             ul.collapsible(data-collapsible="accordion")
-              li(ng-repeat="tor in torrents.torrents" on-repeat-end)
+              li(ng-repeat="tor in torrents.torrents track by tor.name" on-repeat-end)
                 .collapsible-header.disable-text-highlighting
                   i.mdi-image-filter-drama
                   span(title="{{tor.name}}"): b {{tor.name}}
@@ -122,7 +122,7 @@
               a(href="#!").modal-action.modal-close.waves-effect.waves-green.btn-flat Add
 
           .footer.z-depth-2.valign-wrapper
-            a(href="#!" ng-click="openModal('#addTorrents')").btn-floating.btn-small.waves-effect.waves-light.modal-trigger.red
+            a(href="" ng-click="openModal('#addTorrents')").btn-floating.btn-small.waves-effect.waves-light.modal-trigger.red
               i.mdi-content-add
             .container.text.valign.no-padding
               h6: b Stats

@@ -8,7 +8,7 @@
     <h1 ng-class="theme_text_primary" class="time col s12 l12"><span>{{time_time}}</span><span class="blue-text text-darken-2"> {{time_pm}}</span></h1>
   </div>
   <div class="row widgetStage red darken-1">
-    <div class="container widgetContainer col m6 s12 l3">
+    <div class="container widgetContainer col m6 s12 l4">
       <div class="card medium z-depth-2 systemContainer">
         <div class="card-content fullheight"><span ng-class="theme_text_primary" class="card-title">System<i class="mdi-hardware-desktop-windows left"></i><i class="mdi-navigation-close right"></i></span>
           <ul class="collection left-align">
@@ -28,7 +28,7 @@
         </div>
       </div>
     </div>
-    <div class="container widgetContainer col m6 s12 l3">
+    <div class="container widgetContainer col m6 s12 l4">
       <div class="card medium z-depth-2 feedContainer">
         <div class="card-content fullheight">
           <div class="card-header"><span ng-class="theme_text_primary" class="card-title activator">RSS Reader<i class="mdi-maps-layers left"></i><i class="mdi-navigation-more-vert right"></i></span></div>
@@ -67,13 +67,13 @@
         </div>
       </div>
     </div>
-    <div class="container widgetContainer col m6 s12 l3">
+    <div class="container widgetContainer col m6 s12 l4">
       <div class="card medium z-depth-2 torrentsWidget">
         <div class="card-content fullheight">
           <div class="header"><span ng-class="theme_text_primary" class="card-title">Torrents<i class="mdi-file-folder left"></i><i class="mdi-navigation-close right"></i></span></div>
           <div class="torrents">
             <ul data-collapsible="accordion" class="collapsible">
-              <li ng-repeat="tor in torrents.torrents" on-repeat-end="on-repeat-end">
+              <li ng-repeat="tor in torrents.torrents track by tor.name" on-repeat-end="on-repeat-end">
                 <div class="collapsible-header disable-text-highlighting"><i class="mdi-image-filter-drama"></i><span title="{{tor.name}}"><b>{{tor.name}}</b></span></div>
                 <div title="{{tor.progress.toFixed(2)}}" class="progress no-padding">
                   <div style="width: {{tor.progress}}%;" class="determinate"></div>
@@ -118,7 +118,7 @@
             </div>
             <div class="modal-footer"><a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Quit</a><a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Add</a></div>
           </div>
-          <div class="footer z-depth-2 valign-wrapper"><a href="#!" ng-click="openModal('#addTorrents')" class="btn-floating btn-small waves-effect waves-light modal-trigger red"><i class="mdi-content-add"></i></a>
+          <div class="footer z-depth-2 valign-wrapper"><a href="" ng-click="openModal('#addTorrents')" class="btn-floating btn-small waves-effect waves-light modal-trigger red"><i class="mdi-content-add"></i></a>
             <div class="container text valign no-padding">
               <h6><b>Stats</b></h6><span>
                 <h6>[DL]: {{parseDLSpeed(torrents.stats.download_rate)}}  [UL]: {{parseDLSpeed(torrents.stats.upload_rate)}}</h6></span>

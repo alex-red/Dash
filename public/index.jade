@@ -1,0 +1,29 @@
+html(ng-app="dash")
+    head
+        title Dash
+        base(href="/")
+        meta(name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no")
+        // Import CSS
+        link(rel="stylesheet", type="text/css", href="/bower_components/materialize/dist/css/materialize.css")
+        link(rel="stylesheet", type="text/css", href="/bower_components/angular-motion/dist/angular-motion.css")
+        // /Custom CSS
+        link(rel="stylesheet", type="text/css", href="/custom/css/index.css")
+
+        // Import vendor JS
+        // google feeds
+        script(type="text/javascript" src="https://www.google.com/jsapi?autoload=%7B%22modules%22%3A%5B%7B%22name%22%3A%22feeds%22%2C%22version%22%3A%221.0%22%2C%22nocss%22%3Atrue%7D%5D%7D")
+        script(type="application/javascript", src="/bower_components/jquery/dist/jquery.js")
+        script(type="application/javascript", src="/bower_components/materialize/dist/js/materialize.js")
+        script(src="/bower_components/angularjs/angular.js")
+        script(type="text/javascript", src="/bower_components/angular-animate/angular-animate.js")
+        script(type="text/javascript", src="/bower_components/angular-strap/dist/angular-strap.js")
+        script(type="text/javascript", src="/bower_components/angular-sanitize/angular-sanitize.min.js")
+        script(type="text/javascript", src="/bower_components/ui-router/release/angular-ui-router.js")
+
+        script(type="text/javascript", src="/bower_components/moment/moment.js")
+        script(type="application/javascript", src="/bower_components/underscore/underscore.js")
+
+
+        // Import /custom JS
+        script(type="text/javascript", src="custom/js/index.js")
+    body(ui-view="main")
