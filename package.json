@@ -3,6 +3,7 @@
   "main": "server.js",
   "dependencies": {
     "body-parser": "*",
+    "diskspace": "^0.1.7",
     "express": "*",
     "method-override": "*",
     "mongoose": "*",

@@ -18,6 +18,13 @@ app.filter 'htmlToPlaintext', ->
   (text) ->
     String(text).replace /<[^>]+>/gm, ''
 
+app.filter 'returnDomainChar', ->
+    (text) ->
+        if text.indexOf('www.') != -1
+            return text.split('www.')[1].substr 0, 1
+        else
+            return text.split('//')[1].substr 0, 1
+
 app.directive 'onRepeatEnd', ->
     (scope, elem, attrs) ->
         if scope.$last
@@ -30,7 +37,8 @@ homeCtrl = ($scope, $interval, $http, $sce) ->
     time = 0
     $scope.theme_text_primary = "grey-text text-darken-4"
     # list of lists of feed objs
-    $scope.feeds = null
+    $scope.feeds = []
+    $scope.feedsDB = ['http://stackoverflow.com/feeds/tag?tagnames=angularjs&sort=newest', 'http://www.reddit.com/r/treeofsavior.rss']
     $scope.torrents = null
 
     updateTime = ->
@@ -50,13 +58,22 @@ homeCtrl = ($scope, $interval, $http, $sce) ->
                 $interval.cancel countSystemInfo
                 console.log "Error! #{err}"
 
+    getSystemDiskInfo = ->
+        $http.get 'disk_info'
+            .success (data) ->
+                data.total = (data.total / (1024 * 1024 * 1024)).toFixed(2)
+                data.free = (data.free / (1024 * 1024 * 1024)).toFixed(2)
+                data.used = (data.total - data.free).toFixed(2)
+                $scope.diskInfo = data
+            .error (err) ->
+                console.log "Error! #{err}"
+
     ## Torrents
     getDelugeInfo = ->
         $http.get 'deluge_info'
             .success (data) ->
-                # console.log data
                 $scope.torrents = data.result
-                # console.log $scope.torrents
+
             .error (err) ->
                 console.log "Error: #{err}"
 
@@ -68,8 +85,13 @@ homeCtrl = ($scope, $interval, $http, $sce) ->
     $scope.parseDLSpeed = (b) ->
         res = toKB(b)
         res = if res > 1000 then toMB(b) else res.toString() + ' KB/s'
-
         return res
+    $scope.parseTime = (t) ->
+        if !t then return "N/A"
+        res = (t / 60).toString().split('.')
+        mins = res[0]
+        secs = if res[1] then (res[1].substr(0,2)) else 0
+        return "#{mins}m #{secs}s"
 
     countTime = $interval(updateTime, 1000)
     countSystemInfo = $interval getSystemInfo, 2000
@@ -81,15 +103,16 @@ homeCtrl = ($scope, $interval, $http, $sce) ->
         feed.setResultFormat google.feeds.Feed.JSON_FORMAT
         feed.load (res) ->
             if !res.error
-                console.log res.feed.entries
-                $scope.feeds = res.feed.entries
+                $scope.feeds = _.union $scope.feeds, res.feed.entries
             else
                 return null
 
     $scope.grabFeeds = ->
-        grabFeed 'http://stackoverflow.com/feeds/tag?tagnames=angularjs&sort=newest'
-        console.log $scope.feeds
+        for feed in $scope.feedsDB
+            grabFeed feed
+        # console.log $scope.feeds
         $('.collapsible').collapsible()
+
     $scope.debug = ->
         $('.collapsible').collapsible()
         return false
@@ -97,6 +120,7 @@ homeCtrl = ($scope, $interval, $http, $sce) ->
     init = ->
         updateTime()
         getSystemInfo()
+        getSystemDiskInfo()
         $scope.grabFeeds()
         getDelugeInfo()
     init()
@@ -104,6 +128,12 @@ homeCtrl = ($scope, $interval, $http, $sce) ->
     # Helpers
     $scope.trustHtml = (str) ->
         return $sce.trustAsHtml(str)
+
+    $scope.checkEmpty = (obj) ->
+        return _.isEmpty obj
+
+    $scope.openModal = (target) ->
+        $("#{target}").openModal()
 
 
     $scope.$on '$destroy', -> # Make sure to cancel the counter

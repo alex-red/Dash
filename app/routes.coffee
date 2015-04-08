@@ -1,11 +1,19 @@
 path = require 'path'
 os = require 'os'
 request = require 'request'
+disk = require 'diskspace'
 
 module.exports = (app) ->
 
   app.get "/", (req, res) ->
     return res.sendFile path.join(__dirname, "../public/views/index.html")
+
+  app.get '/disk_info', (req, res) ->
+    disk.check 'C', (err, total, free, status) ->
+      disk_info =
+        'total': total
+        'free': free
+      return res.send disk_info
 
   app.get '/sys_info', (req, res) ->
     cpuInfo =

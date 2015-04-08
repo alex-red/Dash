@@ -11,15 +11,13 @@
     h1.time.col.s12.l12(ng-class="theme_text_primary")
       span {{time_time}}
       span.blue-text.text-darken-2  {{time_pm}}
-    a.waves-effect.waves-light.btn(ng-click="debug()") Debug
 
   .row.widgetStage(class=theme_primary)
-    .container.widgetContainer.col.m6.s12.l4
+    .container.widgetContainer.col.m6.s12.l3
       .card.medium.z-depth-2.systemContainer
         .card-content.fullheight
-          span.card-title(ng-class="theme_text_primary")
+          span.card-title(ng-class="theme_text_primary") System
             i.mdi-hardware-desktop-windows.left
-            b System
             i.mdi-navigation-close.right
           ul.collection.left-align
             li.collection-item.avatar
@@ -33,51 +31,101 @@
             li.collection-item.avatar
               img(src="icons/ram.svg").thumb
               span.title: b Memory
-              p {{sysinfo.percentmem}}% Usage <br> {{sysinfo.usedmem}} mb / {{sysinfo.totalmem}} mb
+              p {{sysinfo.percentmem}}% Usage <br> {{sysinfo.usedmem}} MB / {{sysinfo.totalmem}} MB
             li.collection-item.avatar
-              img(src="icons/processor.svg").thumb
-              span.title: b Processor
-              p {{sysinfo.cpus.length}}x {{sysinfo.cpus[0].model}}
+              img(src="icons/hdd.svg").thumb
+              span.title: b Storage [C:\]
+              p {{diskInfo.used}}/{{diskInfo.total}} GB <br> {{diskInfo.free}} GB Remaining.
 
 
-    .container.widgetContainer.col.m6.s12.l4
+
+    .container.widgetContainer.col.m6.s12.l3
       .card.medium.z-depth-2.feedContainer
         .card-content.fullheight
           .card-header
-            span.card-title(ng-class="theme_text_primary")
+            span.card-title.activator(ng-class="theme_text_primary") RSS Reader
               i.mdi-maps-layers.left
-              b RSS Reader
-              i.mdi-navigation-close.right
+              i.mdi-navigation-more-vert.right
           .feeds
             ul.collapsible(ng-if="feeds" data-collapsible="accordion")
               li(ng-repeat="feed in feeds" on-repeat-end)
-                .collapsible-header.valign-wrapper
-                    i.mdi-image-filter-drama
-                    h5.flow-title.valign
-                      a(title="{{feed.link}}" href="{{feed.link}}").red-text: b {{feed.title}}
+                .collapsible-header
+                  .row.no-padding
+                    h5.left {{feed.link | returnDomainChar}}
+                    a(title="{{feed.link}}" href="{{feed.link}}").red-text: b {{feed.title}}
                 .collapsible-body.left-align.grey.lighten-5
-                    p.text(ng-bind-html="trustHtml(feed.content)")
+                  p.text(ng-bind-html="trustHtml(feed.content)")
+        .card-reveal
+          span.card-title(ng-class="theme_text_primary") Options
+            i.mdi-action-settings.left
+            i.mdi-navigation-close.right
+          ul.collection.with-header.optionContainer.red
+            li.collection-header.red: b Current Feeds
+            li.collection-item(ng-repeat="f in feedsDB")
+              .feedObject.row
+                .feedTitle.col.s10
+                  a(href="{{f}}" title="{{f}}"): em {{f}}
+                .feedHandler.col.s2
+                  a(href="#!"): span.badge.red.white-text Del
+                    i.mdi-action-delete
+          .row
+            .input-field.col.s10
+              input#inputFeed(type="text")
+              label(for="inputFeed") RSS Feed
+            .inputHandler.col.s2(style="margin-top: 1.5rem; right: .5rem")
+              a.btn-floating.btn-small.waves-effect.waves-light.red(style="right: 0.5rem;")
+                i.mdi-content-add
 
-    .container.widgetContainer.col.m6.s12.l4
+    .container.widgetContainer.col.m6.s12.l3
       .card.medium.z-depth-2.torrentsWidget
         .card-content.fullheight
           .header
-            span.card-title(ng-class="theme_text_primary")
+            span.card-title(ng-class="theme_text_primary") Torrents
               i.mdi-file-folder.left
-              b Torrents
               i.mdi-navigation-close.right
           .torrents
             ul.collapsible(data-collapsible="accordion")
               li(ng-repeat="tor in torrents.torrents" on-repeat-end)
-                .collapsible-header.disable-text-highlighting.valign-wrapper
+                .collapsible-header.disable-text-highlighting
                   i.mdi-image-filter-drama
-                  span.flow-title.valign(title="{{tor.name}}"): b {{tor.name}}
+                  span(title="{{tor.name}}"): b {{tor.name}}
                 .progress.no-padding(title="{{tor.progress.toFixed(2)}}")
                   .determinate(style="width: {{tor.progress}}%;")
                 .collapsible-body.left-align.grey.lighten-5
-                  p.text test
+                  table.striped
+                    thead
+                      tr
+                        th
+                        th
+                    tbody
+                      tr
+                        td Status: {{tor.state}}
+                        td Speed: {{parseDLSpeed(tor.download_payload_rate)}}
+                      tr
+                        td Active: {{parseTime(tor.active_time)}} Seconds
+                        td Seeds: {{tor.num_seeds}}
+                      tr
+                        td ETA: {{parseTime(tor.eta)}} remaining
+                        td Peers: {{tor.num_peers}}
+            p(ng-if="checkEmpty(torrents.torrents)") You dont have any torrents.
+
+          #addTorrents.modal
+            .modal-content
+              h5 Add Torrent
+              .row
+                .input-field.col.s12
+                  i.prefix: img(width=50 src="icons/magnet.png")
+                  input#inputTorrent(type="text")
+                  label(for="inputTorrent") Magnet URL
+            .modal-footer
+              a(href="#!").modal-action.modal-close.waves-effect.waves-green.btn-flat Quit
+              a(href="#!").modal-action.modal-close.waves-effect.waves-green.btn-flat Add
+
           .footer.z-depth-2.valign-wrapper
+            a(href="#!" ng-click="openModal('#addTorrents')").btn-floating.btn-small.waves-effect.waves-light.modal-trigger.red
+              i.mdi-content-add
             .container.text.valign.no-padding
               h6: b Stats
               span
                 h6 [DL]: {{parseDLSpeed(torrents.stats.download_rate)}}  [UL]: {{parseDLSpeed(torrents.stats.upload_rate)}}
+

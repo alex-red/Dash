@@ -4,6 +4,10 @@
 		"selected_items":
 		[
 			[
+				"part",
+				"parseInt"
+			],
+			[
 				"text",
 				"text"
 			],
@@ -119,7 +123,7 @@
 			"file": "public/views/home.jade",
 			"settings":
 			{
-				"buffer_size": 3742,
+				"buffer_size": 4334,
 				"line_ending": "Windows"
 			}
 		},
@@ -127,7 +131,7 @@
 			"file": "public/custom/css/index.styl",
 			"settings":
 			{
-				"buffer_size": 2808,
+				"buffer_size": 2999,
 				"line_ending": "Windows"
 			}
 		},
@@ -135,7 +139,7 @@
 			"file": "public/custom/js/index.coffee",
 			"settings":
 			{
-				"buffer_size": 3351,
+				"buffer_size": 3572,
 				"line_ending": "Windows"
 			}
 		}
@@ -247,6 +251,7 @@
 	],
 	"file_history":
 	[
+		"/C/Users/Red/Documents/Dev/Repos/Dash/public/custom/css/index.styl",
 		"/C/Users/Red/Documents/Dev/Repos/Dash/server.coffee",
 		"/C/Users/Red/Documents/Dev/Repos/Dash/app/routes.js",
 		"/C/Users/Red/Documents/Dev/Repos/Dash/package.json",
@@ -371,7 +376,7 @@
 	"groups":
 	[
 		{
-			"selected": 3,
+			"selected": 2,
 			"sheets":
 			[
 				{
@@ -561,15 +566,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 3742,
+						"buffer_size": 4334,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								3483,
-								3483
+								2073,
+								2073
 							]
 						],
 						"settings":
@@ -587,31 +592,21 @@
 								"bh_double_quote_open",
 								"bh_double_quote_close",
 								"bh_double_quote_content",
-								"bh_regex",
-								"bh_regex_center",
-								"bh_regex_open",
-								"bh_regex_close",
-								"bh_regex_content",
 								"bh_square",
 								"bh_square_center",
 								"bh_square_open",
 								"bh_square_close",
 								"bh_square_content",
-								"bh_angle",
-								"bh_angle_center",
-								"bh_angle_open",
-								"bh_angle_close",
-								"bh_angle_content",
 								"bh_single_quote",
 								"bh_single_quote_center",
 								"bh_single_quote_open",
 								"bh_single_quote_close",
 								"bh_single_quote_content",
-								"bh_unmatched",
-								"bh_unmatched_center",
-								"bh_unmatched_open",
-								"bh_unmatched_close",
-								"bh_unmatched_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
 								"bh_default",
 								"bh_default_center",
 								"bh_default_open",
@@ -622,16 +617,26 @@
 								"bh_round_open",
 								"bh_round_close",
 								"bh_round_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
 								"bh_c_define",
 								"bh_c_define_center",
 								"bh_c_define_open",
 								"bh_c_define_close",
-								"bh_c_define_content",
-								"bh_tag",
-								"bh_tag_center",
-								"bh_tag_open",
-								"bh_tag_close",
-								"bh_tag_content"
+								"bh_c_define_content"
 							],
 							"color_scheme": "Packages/User/Color Highlighter/themes/Seti_monokai.tmTheme",
 							"syntax": "Packages/Jade/Syntaxes/Jade.tmLanguage",
@@ -639,10 +644,10 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 831.0,
+						"translation.y": 612.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 1,
+					"stack_index": 0,
 					"type": "text"
 				},
 				{
@@ -651,15 +656,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 2808,
+						"buffer_size": 2999,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1630,
-								1630
+								1960,
+								1960
 							]
 						],
 						"settings":
@@ -677,31 +682,21 @@
 								"bh_double_quote_open",
 								"bh_double_quote_close",
 								"bh_double_quote_content",
-								"bh_regex",
-								"bh_regex_center",
-								"bh_regex_open",
-								"bh_regex_close",
-								"bh_regex_content",
 								"bh_square",
 								"bh_square_center",
 								"bh_square_open",
 								"bh_square_close",
 								"bh_square_content",
-								"bh_angle",
-								"bh_angle_center",
-								"bh_angle_open",
-								"bh_angle_close",
-								"bh_angle_content",
 								"bh_single_quote",
 								"bh_single_quote_center",
 								"bh_single_quote_open",
 								"bh_single_quote_close",
 								"bh_single_quote_content",
-								"bh_unmatched",
-								"bh_unmatched_center",
-								"bh_unmatched_open",
-								"bh_unmatched_close",
-								"bh_unmatched_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
 								"bh_default",
 								"bh_default_center",
 								"bh_default_open",
@@ -712,25 +707,37 @@
 								"bh_round_open",
 								"bh_round_close",
 								"bh_round_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
 								"bh_c_define",
 								"bh_c_define_center",
 								"bh_c_define_open",
 								"bh_c_define_close",
-								"bh_c_define_content",
-								"bh_tag",
-								"bh_tag_center",
-								"bh_tag_open",
-								"bh_tag_close",
-								"bh_tag_content"
+								"bh_c_define_content"
 							],
 							"color_scheme": "Packages/User/Color Highlighter/themes/Seti_monokai.tmTheme",
-							"syntax": "Packages/Stylus/Stylus.tmLanguage"
+							"syntax": "Packages/Stylus/Stylus.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 1173.0,
+						"translation.y": 1530.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 0,
+					"stack_index": 1,
 					"type": "text"
 				}
 			]
@@ -745,15 +752,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 3351,
+						"buffer_size": 3572,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								2053,
-								2053
+								2365,
+								2365
 							]
 						],
 						"settings":
@@ -771,31 +778,21 @@
 								"bh_double_quote_open",
 								"bh_double_quote_close",
 								"bh_double_quote_content",
-								"bh_regex",
-								"bh_regex_center",
-								"bh_regex_open",
-								"bh_regex_close",
-								"bh_regex_content",
 								"bh_square",
 								"bh_square_center",
 								"bh_square_open",
 								"bh_square_close",
 								"bh_square_content",
-								"bh_angle",
-								"bh_angle_center",
-								"bh_angle_open",
-								"bh_angle_close",
-								"bh_angle_content",
 								"bh_single_quote",
 								"bh_single_quote_center",
 								"bh_single_quote_open",
 								"bh_single_quote_close",
 								"bh_single_quote_content",
-								"bh_unmatched",
-								"bh_unmatched_center",
-								"bh_unmatched_open",
-								"bh_unmatched_close",
-								"bh_unmatched_content",
+								"bh_tag",
+								"bh_tag_center",
+								"bh_tag_open",
+								"bh_tag_close",
+								"bh_tag_content",
 								"bh_default",
 								"bh_default_center",
 								"bh_default_open",
@@ -806,16 +803,26 @@
 								"bh_round_open",
 								"bh_round_close",
 								"bh_round_content",
+								"bh_unmatched",
+								"bh_unmatched_center",
+								"bh_unmatched_open",
+								"bh_unmatched_close",
+								"bh_unmatched_content",
+								"bh_regex",
+								"bh_regex_center",
+								"bh_regex_open",
+								"bh_regex_close",
+								"bh_regex_content",
+								"bh_angle",
+								"bh_angle_center",
+								"bh_angle_open",
+								"bh_angle_close",
+								"bh_angle_content",
 								"bh_c_define",
 								"bh_c_define_center",
 								"bh_c_define_open",
 								"bh_c_define_close",
-								"bh_c_define_content",
-								"bh_tag",
-								"bh_tag_center",
-								"bh_tag_open",
-								"bh_tag_close",
-								"bh_tag_content"
+								"bh_c_define_content"
 							],
 							"color_scheme": "Packages/User/Color Highlighter/themes/Seti_monokai.tmTheme",
 							"syntax": "Packages/Better CoffeeScript/CoffeeScript.tmLanguage",
@@ -823,7 +830,7 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 627.0,
+						"translation.y": 1137.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 2,
@@ -870,6 +877,10 @@
 		]
 	},
 	"menu_visible": true,
+	"output.coffee_compile_output":
+	{
+		"height": 110.0
+	},
 	"output.exec":
 	{
 		"height": 156.0
@@ -924,7 +935,7 @@
 	"show_open_files": false,
 	"show_tabs": true,
 	"side_bar_visible": true,
-	"side_bar_width": 247.0,
+	"side_bar_width": 189.0,
 	"status_bar_visible": true,
 	"template_settings":
 	{

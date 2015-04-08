@@ -1,5 +1,5 @@
 (function() {
-  var os, path, request;
+  var disk, os, path, request;
 
   path = require('path');
 
@@ -7,9 +7,21 @@
 
   request = require('request');
 
+  disk = require('diskspace');
+
   module.exports = function(app) {
     app.get("/", function(req, res) {
       return res.sendFile(path.join(__dirname, "../public/views/index.html"));
+    });
+    app.get('/disk_info', function(req, res) {
+      return disk.check('C', function(err, total, free, status) {
+        var disk_info;
+        disk_info = {
+          'total': total,
+          'free': free
+        };
+        return res.send(disk_info);
+      });
     });
     app.get('/sys_info', function(req, res) {
       var cpuInfo;

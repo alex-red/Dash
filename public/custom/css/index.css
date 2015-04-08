@@ -33,15 +33,27 @@ body {
 .widgetContainer {
   min-width: 304px;
 }
+.widgetContainer .card-title {
+  font-weight: bold;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
 .systemContainer {
   font-size: 12px;
+}
+.systemContainer li {
+  padding: 0 !important;
 }
 .systemContainer .collection .collection-item.avatar {
   padding-left: 72px !important;
   height: 75px !important;
 }
 .systemContainer .collection .collection-item {
-  padding: 10 !important;
+  padding-top: 0.25rem !important;
 }
 .systemContainer .thumb {
   position: absolute;
@@ -54,9 +66,11 @@ body {
 }
 .feedContainer .feeds {
   height: 100%;
-  overflow-y: scroll !important;
   margin-left: -20;
   margin-right: -20;
+  margin-top: 7.5;
+  padding-bottom: 3rem !important;
+  overflow-y: scroll !important;
 }
 .feedContainer .feeds ul {
   -webkit-box-shadow: none;
@@ -80,18 +94,38 @@ body {
 .feedContainer .feeds a:hover {
   text-decoration: underline;
 }
-.feedContainer .flow-title {
-  font-size: 12px;
-  line-height: 1.2rem !important;
-}
 .feedContainer .collapsible-header {
-  height: 55px !important;
   overflow: hidden !important;
+  height: inherit !important;
+  line-height: normal !important;
+  font-size: 0.9rem;
 }
 .feedContainer .text {
   font-size: 12px !important;
   line-height: 1.3rem !important;
   padding: 0.1em !important;
+}
+.feedContainer .card-reveal {
+  overflow: hidden !important;
+}
+.feedContainer .optionContainer {
+  background-color: none;
+  padding: 0.2rem !important;
+  margin-top: 1.3rem;
+  margin-left: -20;
+  margin-right: -20;
+  overflow: hidden;
+}
+.feedContainer .optionContainer li {
+  overflow: hidden;
+  height: 35px !important;
+  padding: 0.4rem !important;
+}
+.feedContainer .optionContainer li a {
+  text-transform: none;
+}
+.feedContainer .optionContainer .feedTitle {
+  font-size: 0.8rem;
 }
 .torrentsWidget {
   height: 100%;
@@ -108,20 +142,34 @@ body {
   margin-left: -20;
   margin-right: -20;
   margin-bottom: 20px;
-  overflow: hidden !important;
-}
-.torrentsWidget .torrents i {
-  margin-top: -0.6rem;
 }
 .torrentsWidget .torrents .flow-title {
   padding: 0.2rem;
   font-size: 12px;
   height: 100%;
 }
+.torrentsWidget .torrents table {
+  font-size: 1em;
+}
+.torrentsWidget .torrents table thead {
+  display: none !important;
+}
+.torrentsWidget .torrents table tbody {
+  font-size: 0.8rem;
+}
+.torrentsWidget .torrents table td {
+  padding: 0.3rem !important;
+  padding-left: 1rem !important;
+}
 .torrentsWidget .collapsible-header {
-  height: 35px !important;
-  line-height: 1rem !important;
   overflow: hidden !important;
+  font-size: 0.8rem;
+}
+.torrentsWidget .collapsible-header i {
+  position: absolute;
+}
+.torrentsWidget .collapsible-header span {
+  padding-left: 3rem;
 }
 .torrentsWidget .collapsible-header .progress {
   width: 312px;
@@ -138,4 +186,16 @@ body {
 }
 .torrentsWidget .footer .text {
   margin: 0 auto;
+}
+.torrentsWidget .footer a {
+  position: absolute;
+  left: 0.5rem;
+  top: -1.5rem;
+}
+#addTorrents #inputTorrent {
+  width: 80%;
+  margin-left: 4.5rem !important;
+}
+#addTorrents label {
+  margin-left: 7.5rem !important;
 }
