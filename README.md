@@ -1,4 +1,4 @@
-Dash
+Dash [Demo](http://alex-red.github.io/Dash)
 ======
 
 A Modern Dashboard, accessible everywhere
@@ -15,6 +15,8 @@ Install (Windows)
 
 Install (Linux)
 ====
+  1. [Node JS](https://nodejs.org/)
 
 Install (OSX)
 ====
+  1. [Node JS](https://nodejs.org/)
